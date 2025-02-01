@@ -162,10 +162,13 @@ export default async function Services() {
 ]
   return (
     <div>
-     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
         {
-            data.map((service) => <div key={service._id}>
-                <Image src={service.img} width={300} height={250}/>
+            data.map((service) => <div key={service._id} className=''>
+                <Image src={service.img} width={350} height={250}/>
+                <h1 className='font-bold text-xl'>{service.title}</h1>
+                <p className='text-orange-600'>Price: {service.price}</p>
+
             </div>)
         }
         

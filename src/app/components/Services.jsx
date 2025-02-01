@@ -1,5 +1,6 @@
 import dbConnect, { collectionNames } from '@/lib/dbConnect'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default async function Services() {
@@ -15,6 +16,7 @@ export default async function Services() {
                </figure>
                 <h1 className='font-bold text-2xl'>{service.title}</h1>
                 <p className='text-orange-600 text-xl'>Price: {service.price}</p>
+                <Link href={`/services/${service._id}`}><button className='btn btn-outline w-full'>Service Details</button></Link>
 
             </div>)
         }

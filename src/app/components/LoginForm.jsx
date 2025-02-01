@@ -1,35 +1,46 @@
 'use client'
 import React from 'react';
 import {  signIn } from "next-auth/react"
+import { useRouter } from 'next/navigation';
+
+import toast from 'react-hot-toast';
+import SocialLogin from '@/components/SocialLogin';
 const LoginForm = () => {
+    const router = useRouter()
     const handleSubmit = async(e)=> {
         e.preventDefault()
+      try{
         const form = e.target 
         const email = form.email.value 
         const password = form.password.value 
         console.log({email, password});
-        await signIn('credentials', {email, password, callbackUrl: '/'})
+        toast.success('Submitting...')
+        const response = await signIn('credentials', {email, password, callbackUrl: '/', redirect: false})
+        if(response.ok){
+            toast.success('User Login Successfully')
+         router.push('/')
+        }
+        else{
+      toast.error('Login Failed')
+        }
+      }
+      
+      catch(error){
+        toast.error(error)
+      }
     }
 
     return (
         <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="input input-bordered flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              className="h-4 w-4 opacity-70"
-            >
-              <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
-              <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
-            </svg>
-            <input type="email" name='email' placeholder="Email" />
+        
+            <input type="email" name='email' placeholder="Your  Email" />
           </label>
         </div>
         <div>
           <label className="input input-bordered flex items-center gap-2">
-            <input type="password" name='password'  placeholder="Password" />
+            <input type="password" name='password'  placeholder="Your  Password" />
           </label>
         </div>
         <button
@@ -38,6 +49,7 @@ const LoginForm = () => {
         >
           Login
         </button>
+        <SocialLogin></SocialLogin>
       </form>
     );
 };

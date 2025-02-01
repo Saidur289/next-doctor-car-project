@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import { registerUser } from '../actions/auth/regiserUser';
+import SocialLogin from '@/components/SocialLogin';
 
 const RegisterForm = () => {
     const handleSubmit = async(e) => {
@@ -42,6 +43,7 @@ const RegisterForm = () => {
          </label>
         </div>
         <button type="submit"  className="w-full py-3 px-4 rounded-md bg-orange-400 text-white">Register</button>
+        <SocialLogin></SocialLogin>
        </form>
     );
 };

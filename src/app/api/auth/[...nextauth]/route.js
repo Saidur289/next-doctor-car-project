@@ -1,4 +1,5 @@
 import { loginUser } from "@/app/actions/auth/loginUser"
+import dbConnect, { collectionNames } from "@/lib/dbConnect";
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
@@ -44,6 +45,23 @@ export const authOptions = { providers: [
   ],
   pages: {
     signIn: '/login',
-  }}
+  },
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+        if(account){
+            const {providerAccountId, provider} = account
+            const {email: user_email, image, name} = user 
+            const usersCollection = dbConnect(collectionNames.USER_COLLECTION)
+            const isExists = await usersCollection.findOne({providerAccountId})
+            if(!isExists){
+                const payload = {providerAccountId, email: user_email, image, name, provider}
+                await usersCollection.insertOne(payload)
+            }
+        }
+        return true
+      },
+  }
+  
+}
 const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }

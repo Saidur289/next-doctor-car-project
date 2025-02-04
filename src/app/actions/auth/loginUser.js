@@ -1,3 +1,4 @@
+'use server'
 import dbConnect, { collectionNames } from "@/lib/dbConnect"
 import bcrypt from "bcrypt";
 export const loginUser = async(payload) => {

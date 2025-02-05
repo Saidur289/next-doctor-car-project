@@ -9,7 +9,7 @@ export default async function checkoutPage({params}) {
   return (
     <div>
         <CheckoutForm data={data}></CheckoutForm>
-        <p>{JSON.stringify(data)}</p>
+       
     </div>
   )
 }

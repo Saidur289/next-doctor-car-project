@@ -26,7 +26,7 @@ const CheckoutForm = ({data}) => {
         customerName: name,
         email,
         // user input 
-        data,
+       date,
         phone,
         address,
         // extra information 
@@ -38,6 +38,13 @@ const CheckoutForm = ({data}) => {
 
     }
     console.log(bookingPayload);
+    const res =  fetch('http://localhost:3000/api/service', {
+        method: 'POST',
+        body: JSON.stringify(bookingPayload)
+    })
+    const postedResponse = await res.json()
+    console.log(postedResponse);
+    toast.success('booking successfully')
    
   };
 

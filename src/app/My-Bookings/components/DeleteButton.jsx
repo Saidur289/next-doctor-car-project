@@ -5,7 +5,7 @@ import { FaTrash } from 'react-icons/fa'
 export default function DeleteButton({id}) {
   const router = useRouter()
   const handleDelete = async() => {
-    const response = await fetch(`http://localhost:3000/api/service/${id}`, {
+    const response = await fetch(`https://next-doctor-car-project.vercel.app/api/service/${id}`, {
       method: 'DELETE'
     })
     router.refresh('/My-Bookings')

@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache"
 
 export const  GET = async(req, {params}) => {
     const p = await params 
-    console.log('hello world',p.id);
+    // console.log('hello world',p.id);
     const serviceCollection = dbConnect(collectionNames.TEST_COLLECTION)
     const data = await serviceCollection.findOne({_id: new ObjectId(p.id)})
     return NextResponse.json(data)

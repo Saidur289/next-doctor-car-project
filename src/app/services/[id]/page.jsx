@@ -7,7 +7,7 @@ export default async function ServiceDetailsPage({params}) {
     const id = (await params).id
     const res = await fetch(`http://localhost:3000/api/service/${id}`)
     const data = await res.json()
-    console.log(data);
+    // console.log(data);
   return (
     <div>
         <section className='flex justify-center'>

@@ -52,10 +52,10 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
            {links}
-          </ul>
+          </ul> 
         </div>
         <a className="text-xl">
-            <Image src={'/assets/logo.svg'} width={107} height={87}/>
+            <Image src={'/assets/logo.svg'} alt="logo" width={107} height={87}/>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">

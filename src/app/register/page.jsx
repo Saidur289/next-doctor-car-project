@@ -7,7 +7,7 @@ export default function RegisterPage() {
     <div className="md:flex md:justify-center md:items-center mt-5">
       
      <div className="md:w-1/2">
-     <Image src={'/assets/login.svg'} width={500} height={300}/>
+     <Image src={'/assets/login.svg'} alt="login Pic" width={500} height={300}/>
 
      </div>
      <div className="md:w-1/2 space-y-6">
